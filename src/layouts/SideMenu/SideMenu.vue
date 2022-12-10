@@ -41,7 +41,7 @@ onMounted(() => {
         class="pr-5 pb-16 overflow-x-hidden hidden md:block w-[85px] xl:w-[230px]"
       >
         <RouterLink
-          :to="{ name: 'side-menu-page-1' }"
+          :to="{ name: 'home' }"
           class="flex items-center pt-4 pl-5 intro-x"
         >
           <img
@@ -49,7 +49,7 @@ onMounted(() => {
             class="w-6"
             :src="logoUrl"
           />
-          <span class="hidden ml-3 text-lg text-white xl:block"> Rubick </span>
+          <span class="hidden ml-3 text-lg text-white xl:block"> Rollbard </span>
         </RouterLink>
         <Devider type="div" class="my-6"></Devider>
         <ul>

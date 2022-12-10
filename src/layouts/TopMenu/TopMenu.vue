@@ -51,16 +51,9 @@ onMounted(() => {
     >
       <div class="flex items-center h-[70px] z-[51] relative">
         <!-- BEGIN: Logo -->
-        <RouterLink
-          :to="{ name: 'top-menu-page-1' }"
-          class="hidden -intro-x md:flex"
-        >
-          <img
-            alt="Midone Tailwind HTML Admin Template"
-            class="w-6"
-            :src="logoUrl"
-          />
-          <span class="ml-3 text-lg text-white"> Rubick </span>
+        <RouterLink :to="{ name: 'top-menu-page-1' }" class="hidden -intro-x md:flex">
+          <img alt="Midone Tailwind HTML Admin Template" class="w-6" :src="logoUrl" />
+          <span class="ml-3 text-lg text-white"> Rollbard </span>
         </RouterLink>
         <!-- END: Logo -->
         <!-- BEGIN: Breadcrumb -->
@@ -146,9 +139,7 @@ onMounted(() => {
                       />
                     </div>
                     <div class="ml-3">{{ faker.users[0].name }}</div>
-                    <div
-                      class="w-48 ml-auto text-xs text-right truncate text-slate-500"
-                    >
+                    <div class="w-48 ml-auto text-xs text-right truncate text-slate-500">
                       {{ faker.users[0].email }}
                     </div>
                   </a>
@@ -168,9 +159,7 @@ onMounted(() => {
                     />
                   </div>
                   <div class="ml-3">{{ faker.products[0].name }}</div>
-                  <div
-                    class="w-48 ml-auto text-xs text-right truncate text-slate-500"
-                  >
+                  <div class="w-48 ml-auto text-xs text-right truncate text-slate-500">
                     {{ faker.products[0].category }}
                   </div>
                 </a>
@@ -191,10 +180,7 @@ onMounted(() => {
             <div
               v-for="(faker, fakerKey) in _.take(fakerData, 5)"
               :key="fakerKey"
-              :class="[
-                'cursor-pointer relative flex items-center',
-                { 'mt-5': fakerKey },
-              ]"
+              :class="['cursor-pointer relative flex items-center', { 'mt-5': fakerKey }]"
             >
               <div class="relative flex-none w-12 h-12 mr-1 image-fit">
                 <img
@@ -274,8 +260,7 @@ onMounted(() => {
           :class="[
             'relative [&:hover>ul]:block [&:hover>a>div:nth-child(2)>svg]:-rotate-90',
             {
-              '[&:hover>a>div:nth-child(1)]:before:bg-white/5 [&:hover>a>div:nth-child(1)]:before:dark:bg-darkmode-500/70':
-                !menu.active,
+              '[&:hover>a>div:nth-child(1)]:before:bg-white/5 [&:hover>a>div:nth-child(1)]:before:dark:bg-darkmode-500/70': !menu.active,
             },
           ]"
         >
