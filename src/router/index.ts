@@ -4,7 +4,8 @@ import SimpleMenu from "../layouts/SimpleMenu/SimpleMenu.vue";
 import TopMenu from "../layouts/TopMenu/TopMenu.vue";
 import Page1 from "../pages/Page1.vue";
 import Page2 from "../pages/Page2.vue";
-import Home from "../pages/Home.vue";
+import Home from "../pages/Home/Home.vue";
+import Updates from "../pages/Home/Updates.vue";
 
 const routes = [
   {
@@ -12,9 +13,16 @@ const routes = [
     component: SideMenu,
     children: [
       {
-        path: "/",
-        name: "home",
+        path: "home",
+        name: "Home",
         component: Home,
+        children:[
+          {
+            path:"updates",
+            name:"Updates",
+            component:Updates
+          }
+        ]
       },
       {
         path: "page-2",

@@ -3,7 +3,6 @@ import { useRoute } from "vue-router";
 import logoUrl from "../../assets/images/logo.svg";
 import Devider from "./Devider.vue";
 import Menu from "./Menu.vue";
-import TopBar from "../../components/TopBar";
 import DarkModeSwitcher from "../../components/DarkModeSwitcher";
 import MainColorSwitcher from "../../components/MainColorSwitcher";
 import MobileMenu from "../../components/MobileMenu";
@@ -41,7 +40,7 @@ onMounted(() => {
         class="pr-5 pb-16 overflow-x-hidden hidden md:block w-[85px] xl:w-[230px]"
       >
         <RouterLink
-          :to="{ name: 'home' }"
+          :to="{ name: 'Updates' }"
           class="flex items-center pt-4 pl-5 intro-x"
         >
           <img
@@ -149,7 +148,6 @@ onMounted(() => {
       <div
         class="rounded-[30px] min-w-0 min-h-screen flex-1 pb-10 bg-slate-100 dark:bg-darkmode-700 px-4 md:px-[22px] max-w-full md:max-w-auto before:content-[''] before:w-full before:h-px before:block"
       >
-        <TopBar />
         <RouterView />
       </div>
       <!-- END: Content -->
