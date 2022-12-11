@@ -26,9 +26,9 @@ const props = defineProps<{
   <!-- BEGIN: Top Bar -->
   <div class="h-[67px] z-[51] flex items-center relative border-b border-slate-200">
   
-    <Breadcrumb class="hidden mr-auto -intro-x sm:flex" v-for="route in routes">
-      <Breadcrumb.Link :to="'{name:' + route.name +'}'">{{route.name}}</Breadcrumb.Link>
-    </Breadcrumb>
+    <button class="mr-auto -intro-x sm:flex" v-for="route in routes"  :to="'{name:' + route.name +'}'">
+      {{route.name}}
+    </button>
     <!-- END: Breadcrumb -->
       
     <!-- BEGIN: Account Menu -->

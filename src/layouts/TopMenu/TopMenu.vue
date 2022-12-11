@@ -57,13 +57,10 @@ onMounted(() => {
         </RouterLink>
         <!-- END: Logo -->
         <!-- BEGIN: Breadcrumb -->
-        <Breadcrumb
-          light
-          class="h-full md:ml-10 md:pl-10 md:border-l border-white/[0.08] mr-auto -intro-x"
-        >
-          <Breadcrumb.Link to="/">Application</Breadcrumb.Link>
-          <Breadcrumb.Link to="/" :active="true"> Dashboard </Breadcrumb.Link>
-        </Breadcrumb>
+        
+    <button class="hidden mr-auto -intro-x sm:flex" v-for="route in routes"  :to="'{name:' + route.name +'}'">
+      {{route.name}}
+    </button>
         <!-- END: Breadcrumb -->
         <!-- BEGIN: Search -->
         <div class="relative mr-3 intro-x sm:mr-6">

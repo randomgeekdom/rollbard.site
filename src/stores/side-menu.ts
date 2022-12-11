@@ -22,9 +22,9 @@ export const useSideMenuStore = defineStore("sideMenu", {
         title: "Home",
       },
       {
-        icon: "Activity",
+        icon: "BatteryCharging",
         pageName: "side-menu-page-2",
-        title: "Page 2",
+        title: "Fate Core",
       },
     ],
   }),
