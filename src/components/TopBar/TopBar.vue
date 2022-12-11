@@ -7,6 +7,7 @@ import { Menu, Popover } from "../../base-components/Headless";
 import fakerData from "../../utils/faker";
 import _ from "lodash";
 import { TransitionRoot } from "@headlessui/vue";
+import RouteInfo from "../../types/RouteInfo";
 
 const searchDropdown = ref(false);
 const showSearchDropdown = () => {
@@ -17,7 +18,7 @@ const hideSearchDropdown = () => {
 };
 
 const props = defineProps<{
-  routes: {name: string}[]; 
+  routes: RouteInfo[]; 
 }>()
 
 </script>
@@ -27,7 +28,7 @@ const props = defineProps<{
   <div class="h-[67px] z-[51] flex items-center relative border-b border-slate-200">
   
     <button class="mr-auto -intro-x sm:flex" v-for="route in routes"  :to="'{name:' + route.name +'}'">
-      {{route.name}}
+      {{route.display}}
     </button>
     <!-- END: Breadcrumb -->
       

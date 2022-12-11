@@ -6,12 +6,25 @@ import Page1 from "../pages/Page1.vue";
 import Page2 from "../pages/Page2.vue";
 import Home from "../pages/Home/Home.vue";
 import Updates from "../pages/Home/Updates.vue";
+import FateCore from "../pages/Fate-Core/FateCore.vue";
+import CharacterGenerator from "../pages/Fate-Core/Character-Generator.vue";
+import RouteInfo from "../types/RouteInfo";
 
-export const HomeRoutes = [
+export const HomeRoutes: RouteInfo[] = [
   {
     path:"updates",
     name:"Updates",
-    component:Updates
+    component:Updates,
+    display: "Updates"
+  }
+];
+
+export const FateCoreRoutes: RouteInfo[] = [
+  {
+    path:"character-generator",
+    name:"FC-Character-Generator",
+    component:CharacterGenerator,
+    display: "Character Generator"
   }
 ];
 
@@ -31,9 +44,10 @@ const routes = [
         children: HomeRoutes
       },
       {
-        path: "page-2",
-        name: "side-menu-page-2",
-        component: Page2,
+        path: "fate-core",
+        name: "FateCore",
+        component: FateCore,
+        children: FateCoreRoutes
       },
     ],
   },

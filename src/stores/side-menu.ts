@@ -23,7 +23,7 @@ export const useSideMenuStore = defineStore("sideMenu", {
       },
       {
         icon: "BatteryCharging",
-        pageName: "side-menu-page-2",
+        pageName: "FC-Character-Generator",
         title: "Fate Core",
       },
     ],
