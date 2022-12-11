@@ -7,22 +7,28 @@ import Page2 from "../pages/Page2.vue";
 import Home from "../pages/Home/Home.vue";
 import Updates from "../pages/Home/Updates.vue";
 
+export const HomeRoutes = [
+  {
+    path:"updates",
+    name:"Updates",
+    component:Updates
+  }
+];
+
 const routes = [
   {
     path: "/",
     component: SideMenu,
     children: [
       {
+        path:"/",
+        redirect:"/home/updates"
+      },
+      {
         path: "home",
         name: "Home",
         component: Home,
-        children:[
-          {
-            path:"updates",
-            name:"Updates",
-            component:Updates
-          }
-        ]
+        children: HomeRoutes
       },
       {
         path: "page-2",

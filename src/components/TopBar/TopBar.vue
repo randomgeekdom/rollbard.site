@@ -15,16 +15,22 @@ const showSearchDropdown = () => {
 const hideSearchDropdown = () => {
   searchDropdown.value = false;
 };
+
+const props = defineProps<{
+  routes: {name: string}[]; 
+}>()
+
 </script>
 
 <template>
   <!-- BEGIN: Top Bar -->
   <div class="h-[67px] z-[51] flex items-center relative border-b border-slate-200">
-    <Breadcrumb class="hidden mr-auto -intro-x sm:flex">
-      <Breadcrumb.Link to="/home/updates">Updates</Breadcrumb.Link>
+  
+    <Breadcrumb class="hidden mr-auto -intro-x sm:flex" v-for="route in routes">
+      <Breadcrumb.Link :to="'{name:' + route.name +'}'">{{route.name}}</Breadcrumb.Link>
     </Breadcrumb>
     <!-- END: Breadcrumb -->
-
+      
     <!-- BEGIN: Account Menu -->
     <Menu>
       <Menu.Button
