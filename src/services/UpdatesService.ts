@@ -1,7 +1,7 @@
 import update from "../types/update"
 
 export default class UpdatesService{
-    static Updates: update[] = [
+    Updates: update[] = [
         {
             Date: new Date(2022, 12, 11),
             Title: "Radiant Rebels",
