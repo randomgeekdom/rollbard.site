@@ -59,12 +59,7 @@ const RollSkill = function (level: number): void {
 
   let diceResult = dice.value[0] + dice.value[1] + dice.value[2] + dice.value[3];
   TotalDiceValue.value =
-    "Result: " +
-    diceResult +
-    " (Dice Result) + " +
-    level +
-    " (Modifier) = " +
-    (diceResult + level);
+    diceResult + " (Dice Result) + " + level + " (Modifier) = " + (diceResult + level);
 
   ShowDice.value = true;
 };
@@ -81,15 +76,19 @@ const RollSkill = function (level: number): void {
       <div>Pronouns: {{ character?.Pronouns }}</div>
       <div v-for="skillLevel in SkillList">
         +{{ skillLevel.level }}
-        <a
+        <button
+          type="button"
           @click="RollSkill(skillLevel.level)"
           class="mx-3"
           v-for="skill in skillLevel.skills"
         >
           {{ skill }}
-        </a>
+        </button>
       </div>
     </form>
+  </div>
+  <div class="px-5">
+    <button @click="RollSkill(0)">Roll</button>
   </div>
   <br />
   <div v-if="ShowDice" class="flex">

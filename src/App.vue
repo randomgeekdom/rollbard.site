@@ -4,7 +4,6 @@ import { provide } from "vue";
 import { RouterView } from "vue-router";
 import Constants from "./models/Constants";
 import FateCoreCharacterGenerationService from "./services/FateCoreCharacterGenerationService";
-import ServiceLocator from "./services/ServiceLocator";
 import UpdatesService from "./services/UpdatesService";
 
 var randomizer = new Randomizer();
