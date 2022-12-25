@@ -1,12 +1,13 @@
-import FateCoreCharater from "../models/FateCore/FateCoreCharacter";
+import FateCoreCharacter from "../models/FateCore/FateCoreCharacter";
 import { NPCGenerator, Gender, Randomizer } from "@randomgeekdom/rollbard";
 import FateCoreSkill from "../models/FateCore/FateCoreSkill";
+import IFateCoreCharacterGenerationService from "./interfaces/IFateCoreCharacterGenerationService";
 
-export default class FateCoreCharacterGenerationService {
+export default class FateCoreCharacterGenerationService implements IFateCoreCharacterGenerationService {
     constructor(private npcGenerator: NPCGenerator, private randomizer: Randomizer) { }
 
-    GenerateCharacter(): FateCoreCharater {
-        var character = new FateCoreCharater();
+    GenerateCharacter(): FateCoreCharacter {
+        var character = new FateCoreCharacter();
         var npc = this.npcGenerator.Generate();
 
         character.Name = npc.Name;

@@ -3,14 +3,20 @@ import { Randomizer } from "@randomgeekdom/rollbard";
 import { ref, Ref } from "vue";
 import Constants from "../../models/Constants";
 import FateCoreCharacter from "../../models/FateCore/FateCoreCharacter";
-import FateCoreCharacterGenerationService from "../../services/FateCoreCharacterGenerationService";
+import IFateCoreCharacterGenerationService from "../../services/interfaces/IFateCoreCharacterGenerationService";
+import IFateCoreCharacterRepository from "../../services/interfaces/IFateCoreCharacterRepository";
 import ServiceLocator from "../../services/ServiceLocator";
 
 let character: Ref<FateCoreCharacter> = ref(new FateCoreCharacter());
+let characters: Ref<FateCoreCharacter[]> = ref([]);
 
-var fateCoreCharacterGenerationService = ServiceLocator.GetService<FateCoreCharacterGenerationService>(
+var fateCoreCharacterGenerationService = ServiceLocator.GetService<IFateCoreCharacterGenerationService>(
   Constants.FateCoreCharacterGenerationService
 );
+var fateCoreCharacterRepository = ServiceLocator.GetService<IFateCoreCharacterRepository>(
+  Constants.FateCoreCharacterRepository
+);
+
 var randomizer = ServiceLocator.GetService<Randomizer>(Constants.Randomizer);
 
 let ShowDice = ref(false);
@@ -25,7 +31,11 @@ let GenerateCharacter = function () {
     return;
   }
 
-  character.value = fateCoreCharacterGenerationService?.GenerateCharacter();
+  SetCharacter(fateCoreCharacterGenerationService?.GenerateCharacter());
+};
+
+let SetCharacter = function (c: FateCoreCharacter) {
+  character.value = c;
 
   let level = Math.max(...character.value.Skills.map((o) => o.Level));
   let arr: { level: number; skills: string[] }[] = [];
@@ -41,9 +51,23 @@ let GenerateCharacter = function () {
   SkillList.value = arr;
 };
 
+let SaveCharacter = function () {
+  fateCoreCharacterRepository?.Save(character.value);
+  characters.value.push(character.value);
+};
+
+let LoadCharacters = function () {
+  characters.value = fateCoreCharacterRepository?.Get() || [];
+};
+
+let Load = function (c: FateCoreCharacter) {
+  SetCharacter(c);
+};
+
 const TotalDiceValue = ref("");
 
 GenerateCharacter();
+LoadCharacters();
 
 const RollSkill = function (level: number): void {
   if (randomizer == null) {
@@ -67,7 +91,8 @@ const RollSkill = function (level: number): void {
 
 <template>
   <div class="flex items-center mt-8 intro-y">
-    <button @click="GenerateCharacter()">Generate</button>
+    <div class="mx-1"><button @click="GenerateCharacter()">Generate</button></div>
+    <div class="mx-1"><button @click="SaveCharacter()">Save Character</button></div>
   </div>
   <!-- BEGIN: Page Layout -->
   <div class="p-5 mt-5 intro-y box">
@@ -114,10 +139,10 @@ const RollSkill = function (level: number): void {
   <div>
     <p class="big-text">&nbsp; {{ TotalDiceValue }}</p>
   </div>
+  <div class="flex items-center mt-8 intro-y">
+    <div v-for="c in characters">
+      <button @click="Load(c)">{{ c.Name }}</button>
+    </div>
+  </div>
   <!-- END: Page Layout -->
 </template>
-<style>
-.big-text {
-  font-size: x-large;
-}
-</style>
