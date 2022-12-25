@@ -6,6 +6,7 @@ import FateCoreCharacter from "../../models/FateCore/FateCoreCharacter";
 import IFateCoreCharacterGenerationService from "../../services/interfaces/IFateCoreCharacterGenerationService";
 import IFateCoreCharacterRepository from "../../services/interfaces/IFateCoreCharacterRepository";
 import ServiceLocator from "../../services/ServiceLocator";
+import Lucide from "../../base-components/Lucide";
 
 let character: Ref<FateCoreCharacter> = ref(new FateCoreCharacter());
 let characters: Ref<FateCoreCharacter[]> = ref([]);
@@ -62,6 +63,14 @@ let LoadCharacters = function () {
 
 let Load = function (c: FateCoreCharacter) {
   SetCharacter(c);
+};
+
+let Delete = function (c: FateCoreCharacter) {
+  const index = characters.value.indexOf(c, 0);
+  if (index > -1) {
+    characters.value.splice(index, 1);
+  }
+  fateCoreCharacterRepository?.SaveAll(characters.value);
 };
 
 const TotalDiceValue = ref("");
@@ -141,6 +150,9 @@ const RollSkill = function (level: number): void {
   </div>
   <div class="flex items-center mt-8 intro-y">
     <div v-for="c in characters">
+      <button @click="Delete(c)">
+        <Lucide icon="Trash" />
+      </button>
       <button @click="Load(c)">{{ c.Name }}</button>
     </div>
   </div>

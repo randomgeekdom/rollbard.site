@@ -18,4 +18,8 @@ export default class FateCoreCharacterRepository implements IFateCoreCharacterRe
         characters.push(character);
         localStorage.setItem(this.CHARACTERS, JSON.stringify(characters));
     }
+
+    SaveAll(characters: FateCoreCharacter[]): void{
+        localStorage.setItem(this.CHARACTERS, JSON.stringify(characters));
+    }
 }
