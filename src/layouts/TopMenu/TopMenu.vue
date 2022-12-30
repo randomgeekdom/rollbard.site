@@ -57,10 +57,10 @@ onMounted(() => {
         </RouterLink>
         <!-- END: Logo -->
         <!-- BEGIN: Breadcrumb -->
-        
-    <button class="hidden mr-auto -intro-x sm:flex" v-for="route in routes"  :to="'{name:' + route.name +'}'">
+
+        <!-- <button class="hidden mr-auto -intro-x sm:flex" v-for="route in routes"  :to="'{name:' + route.name +'}'">
       {{route.name}}
-    </button>
+    </button> -->
         <!-- END: Breadcrumb -->
         <!-- BEGIN: Search -->
         <div class="relative mr-3 intro-x sm:mr-6">

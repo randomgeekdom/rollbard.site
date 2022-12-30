@@ -13,9 +13,7 @@ import { watch, reactive, computed, onMounted } from "vue";
 
 const route = useRoute();
 let formattedMenu = reactive<Array<FormattedMenu | "devider">>([]);
-const setFormattedMenu = (
-  computedFormattedMenu: Array<FormattedMenu | "devider">
-) => {
+const setFormattedMenu = (computedFormattedMenu: Array<FormattedMenu | "devider">) => {
   Object.assign(formattedMenu, computedFormattedMenu);
 };
 const simpleMenuStore = useSimpleMenuStore();
@@ -42,11 +40,7 @@ onMounted(() => {
           :to="{ name: 'simple-menu-page-1' }"
           class="flex items-center pt-4 pl-5 intro-x"
         >
-          <img
-            alt="Midone Tailwind HTML Admin Template"
-            class="w-6"
-            :src="logoUrl"
-          />
+          <img alt="Midone Tailwind HTML Admin Template" class="w-6" :src="logoUrl" />
         </RouterLink>
         <Devider type="div" class="my-6"></Devider>
         <ul>
@@ -83,10 +77,7 @@ onMounted(() => {
                   v-if="menu.subMenu && menu.activeDropdown"
                   class="rounded-lg bg-black/10 dark:bg-darkmode-900/30"
                 >
-                  <li
-                    v-for="(subMenu, subMenuKey) in menu.subMenu"
-                    :key="subMenuKey"
-                  >
+                  <li v-for="(subMenu, subMenuKey) in menu.subMenu" :key="subMenuKey">
                     <Menu
                       :class="{
                         // Animation
@@ -99,19 +90,13 @@ onMounted(() => {
                       level="second"
                     ></Menu>
                     <!-- BEGIN: Third Child -->
-                    <Transition
-                      @enter="enter"
-                      @leave="leave"
-                      v-if="subMenu.subMenu"
-                    >
+                    <Transition @enter="enter" @leave="leave" v-if="subMenu.subMenu">
                       <ul
                         v-if="subMenu.subMenu && subMenu.activeDropdown"
                         class="rounded-lg bg-black/10 dark:bg-darkmode-900/30"
                       >
                         <li
-                          v-for="(
-                            lastSubMenu, lastSubMenuKey
-                          ) in subMenu.subMenu"
+                          v-for="(lastSubMenu, lastSubMenuKey) in subMenu.subMenu"
                           :key="lastSubMenuKey"
                         >
                           <Menu
@@ -122,10 +107,7 @@ onMounted(() => {
                               }`]: !lastSubMenu.active,
                             }"
                             :menu="lastSubMenu"
-                            :formattedMenuState="[
-                              formattedMenu,
-                              setFormattedMenu,
-                            ]"
+                            :formattedMenuState="[formattedMenu, setFormattedMenu]"
                             level="third"
                           ></Menu>
                         </li>
@@ -146,7 +128,7 @@ onMounted(() => {
       <div
         class="rounded-[30px] min-w-0 min-h-screen flex-1 pb-10 bg-slate-100 dark:bg-darkmode-700 px-4 md:px-[22px] max-w-full md:max-w-auto before:content-[''] before:w-full before:h-px before:block"
       >
-        <TopBar />
+        <!-- <TopBar /> -->
         <RouterView />
       </div>
       <!-- END: Content -->
