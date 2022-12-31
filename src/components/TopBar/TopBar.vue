@@ -45,7 +45,7 @@ const logoff = function () {
     <!-- END: Breadcrumb -->
 
     <!-- BEGIN: Account Menu -->
-    <Menu>
+    <Menu v-if="isAuthenticated">
       <Menu.Button
         class="block w-8 h-8 overflow-hidden rounded-full shadow-lg image-fit zoom-in intro-x"
       >
@@ -54,7 +54,6 @@ const logoff = function () {
           v-if="isAuthenticated"
           :src="user?.picture"
         />
-        <Lucide icon="Lock" v-if="!isAuthenticated" />
       </Menu.Button>
       <Menu.Items class="w-56 mt-px text-white bg-primary">
         <Menu.Header class="font-normal" v-if="isAuthenticated">
@@ -76,6 +75,13 @@ const logoff = function () {
         </Menu.Item>
       </Menu.Items>
     </Menu>
+    <div
+      class="block w-8 h-8 overflow-hidden rounded-full shadow-lg image-fit zoom-in intro-x"
+      @click="loginWithRedirect()"
+      v-if="!isAuthenticated"
+    >
+      <Lucide icon="Lock" />
+    </div>
   </div>
   <!-- END: Top Bar -->
 </template>
