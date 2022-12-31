@@ -127,21 +127,9 @@ const RollSkill = function (level: number): void {
   <br />
   <div v-if="ShowDice" class="flex">
     <div v-for="die in dice">
-      <img
-        style="height: 75px; width: 75px"
-        v-if="die == -1"
-        src="../../assets/images/fate-die-minus.png"
-      />
-      <img
-        style="height: 75px; width: 75px"
-        v-if="die == 0"
-        src="../../assets/images/fate-die-0.png"
-      />
-      <img
-        style="height: 75px; width: 75px"
-        v-if="die == 1"
-        src="../../assets/images/fate-die-plus.png"
-      />
+      <img style="height: 75px; width: 75px" v-if="die == -1" src="/fate-die-minus.png" />
+      <img style="height: 75px; width: 75px" v-if="die == 0" src="/fate-die-0.png" />
+      <img style="height: 75px; width: 75px" v-if="die == 1" src="/fate-die-plus.png" />
     </div>
   </div>
   <br />
