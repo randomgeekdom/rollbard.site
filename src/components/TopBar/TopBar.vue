@@ -24,6 +24,12 @@ const props = defineProps<{
 }>();
 
 const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
+
+const logoff = function () {
+  logout({
+    returnTo: window.location.origin,
+  });
+};
 </script>
 
 <template>
@@ -58,7 +64,7 @@ const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
           </div>
         </Menu.Header>
         <Menu.Devider class="bg-white/[0.08]" />
-        <Menu.Item class="hover:bg-white/5" @click="logout()" v-if="isAuthenticated">
+        <Menu.Item class="hover:bg-white/5" @click="logoff()" v-if="isAuthenticated">
           <Lucide icon="ToggleLeft" class="w-4 h-4 mr-2" /> Logout
         </Menu.Item>
         <Menu.Item
