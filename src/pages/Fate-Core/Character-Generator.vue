@@ -121,21 +121,23 @@ const RollSkill = function (level: number): void {
       </div>
     </form>
   </div>
-  <div class="px-5">
+  <br />
+  <div class="flex">
     <button @click="RollSkill(0)">Roll</button>
-  </div>
-  <br />
-  <div v-if="ShowDice" class="flex">
-    <div v-for="die in dice">
-      <img style="height: 75px; width: 75px" v-if="die == -1" src="/fate-die-minus.png" />
-      <img style="height: 75px; width: 75px" v-if="die == 0" src="/fate-die-0.png" />
-      <img style="height: 75px; width: 75px" v-if="die == 1" src="/fate-die-plus.png" />
+    <div v-if="ShowDice" v-for="die in dice">
+      <div v-if="die == -1">
+        <Lucide icon="PlusSquare" />
+      </div>
+      <div v-if="die == 0">
+        <Lucide icon="Square" />
+      </div>
+      <div v-if="die == 1">
+        <Lucide icon="MinusSquare" />
+      </div>
     </div>
+    <h6>&nbsp; {{ TotalDiceValue }}</h6>
   </div>
   <br />
-  <div>
-    <p class="big-text">&nbsp; {{ TotalDiceValue }}</p>
-  </div>
   <div class="flex items-center mt-8 intro-y">
     <div v-for="c in characters">
       <button @click="Delete(c)">
