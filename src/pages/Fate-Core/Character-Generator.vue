@@ -53,12 +53,16 @@ let SetCharacter = function (c: FateCoreCharacter) {
 };
 
 let SaveCharacter = function () {
-  fateCoreCharacterRepository?.Save(character.value);
+  fateCoreCharacterRepository?.SaveAsync(character.value);
   characters.value.push(character.value);
 };
 
 let LoadCharacters = function () {
-  characters.value = fateCoreCharacterRepository?.Get() || [];
+  if (fateCoreCharacterRepository) {
+    fateCoreCharacterRepository.GetAsync().then((x) => {
+      characters.value = x;
+    });
+  }
 };
 
 let Load = function (c: FateCoreCharacter) {
@@ -70,7 +74,7 @@ let Delete = function (c: FateCoreCharacter) {
   if (index > -1) {
     characters.value.splice(index, 1);
   }
-  fateCoreCharacterRepository?.SaveAll(characters.value);
+  fateCoreCharacterRepository?.SaveAllAsync(characters.value);
 };
 
 const TotalDiceValue = ref("");

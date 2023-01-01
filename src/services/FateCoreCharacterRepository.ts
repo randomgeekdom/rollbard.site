@@ -1,25 +1,36 @@
-import FateCoreCharacter from "../models/FateCore/FateCoreCharacter";
-import IFateCoreCharacterRepository from "./interfaces/IFateCoreCharacterRepository";
+// import FateCoreCharacter from "../models/FateCore/FateCoreCharacter";
+// import FateCoreCharacterLocalRepository from "./FateCoreCharacterLocalRepository";
+// import IFateCoreCharacterRepository from "./interfaces/IFateCoreCharacterRepository";
+// import { useAuth0 } from '@auth0/auth0-vue'
+// import { Ref } from "vue";
 
-export default class FateCoreCharacterRepository implements IFateCoreCharacterRepository{
-    CHARACTERS: string = "FATE_CORE_CHARACTERS";
-    Get(): FateCoreCharacter[]{
-        var characters = localStorage.getItem(this.CHARACTERS);
-        if(!characters){
-            return [];
-        }
-        
-        var charactersParsed = <FateCoreCharacter[]>JSON.parse(characters || "");
-        return charactersParsed;
-    }
+// export default class FateCoreCharacterRepository implements IFateCoreCharacterRepository {
+//     localRepository: FateCoreCharacterLocalRepository;
+//     auth0: { isAuthenticated: Ref<boolean> };
 
-    Save(character: FateCoreCharacter): void{
-        var characters = this.Get();
-        characters.push(character);
-        localStorage.setItem(this.CHARACTERS, JSON.stringify(characters));
-    }
+//     constructor() {
+//         this.auth0 = useAuth0();
+//         this.localRepository = new FateCoreCharacterLocalRepository();
+//     }
 
-    SaveAll(characters: FateCoreCharacter[]): void{
-        localStorage.setItem(this.CHARACTERS, JSON.stringify(characters));
-    }
-}
+//     CHARACTERS: string = "FATE_CORE_CHARACTERS";
+//     Get(): FateCoreCharacter[] {
+//         if(!this.auth0.isAuthenticated?.value){
+//             return this.localRepository.Get();
+//         }
+
+
+//     }
+
+//     Save(character: FateCoreCharacter): void {
+//         if(!this.auth0.isAuthenticated?.value){
+//             return this.localRepository.Save(character);
+//         }
+//     }
+
+//     SaveAll(characters: FateCoreCharacter[]): void {
+//         if(!this.auth0.isAuthenticated?.value){
+//             return this.localRepository.SaveAll(characters);
+//         }
+//     }
+// }

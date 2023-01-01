@@ -1,7 +1,7 @@
 import FateCoreCharacter from "../../models/FateCore/FateCoreCharacter";
 
 export default interface IFateCoreCharacterRepository{
-    Get(): FateCoreCharacter[];
-    Save(character: FateCoreCharacter): void;
-    SaveAll(characters: FateCoreCharacter[]): void;
+    GetAsync(): Promise<FateCoreCharacter[]>;
+    SaveAsync(character: FateCoreCharacter): Promise<void>;
+    SaveAllAsync(characters: FateCoreCharacter[]): Promise<void>;
 }
