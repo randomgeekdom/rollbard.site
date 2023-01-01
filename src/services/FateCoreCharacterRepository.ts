@@ -1,36 +1,43 @@
-// import FateCoreCharacter from "../models/FateCore/FateCoreCharacter";
-// import FateCoreCharacterLocalRepository from "./FateCoreCharacterLocalRepository";
-// import IFateCoreCharacterRepository from "./interfaces/IFateCoreCharacterRepository";
-// import { useAuth0 } from '@auth0/auth0-vue'
-// import { Ref } from "vue";
+import { IApiService } from './interfaces/IApiService';
+import FateCoreCharacter from "../models/FateCore/FateCoreCharacter";
+import FateCoreCharacterLocalRepository from "./FateCoreCharacterLocalRepository";
+import IFateCoreCharacterRepository from "./interfaces/IFateCoreCharacterRepository";
+import { useAuth0 } from '@auth0/auth0-vue'
+import { Ref } from "vue";
 
-// export default class FateCoreCharacterRepository implements IFateCoreCharacterRepository {
-//     localRepository: FateCoreCharacterLocalRepository;
-//     auth0: { isAuthenticated: Ref<boolean> };
+export default class FateCoreCharacterRepository implements IFateCoreCharacterRepository {
+    localRepository: FateCoreCharacterLocalRepository;
+    auth0: { isAuthenticated: Ref<boolean> };
 
-//     constructor() {
-//         this.auth0 = useAuth0();
-//         this.localRepository = new FateCoreCharacterLocalRepository();
-//     }
+    constructor(private apiService: IApiService) {
+        const z = useAuth0();
+        z.getAccessTokenSilently
+        this.auth0 = useAuth0();
+        this.localRepository = new FateCoreCharacterLocalRepository();
+    }
 
-//     CHARACTERS: string = "FATE_CORE_CHARACTERS";
-//     Get(): FateCoreCharacter[] {
-//         if(!this.auth0.isAuthenticated?.value){
-//             return this.localRepository.Get();
-//         }
+    CHARACTERS: string = "FATE_CORE_CHARACTERS";
+    async GetAsync(): Promise<FateCoreCharacter[] | undefined> {
+        if(!this.auth0.isAuthenticated?.value){
+            debugger;
+            return await this.localRepository.GetAsync();
+        }
 
+        debugger;
 
-//     }
+        var response = await this.apiService.GetAsync("api/fate-core/characters");
+        return await response.json();
+    }
 
-//     Save(character: FateCoreCharacter): void {
-//         if(!this.auth0.isAuthenticated?.value){
-//             return this.localRepository.Save(character);
-//         }
-//     }
+    async SaveAsync(character: FateCoreCharacter): Promise<void> {
+        if(!this.auth0.isAuthenticated?.value){
+            return await this.localRepository.SaveAsync(character);
+        }
+    }
 
-//     SaveAll(characters: FateCoreCharacter[]): void {
-//         if(!this.auth0.isAuthenticated?.value){
-//             return this.localRepository.SaveAll(characters);
-//         }
-//     }
-// }
+    async SaveAllAsync(characters: FateCoreCharacter[]): Promise<void> {
+        if(!this.auth0.isAuthenticated?.value){
+            return await this.localRepository.SaveAllAsync(characters);
+        }
+    }
+}

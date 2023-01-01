@@ -4,4 +4,5 @@ export default class Constants{
     static FateCoreCharacterGenerationService = "FateCoreCharacterGenerationService";
     static FateCoreCharacterRepository = "FateCoreCharacterRepository";
     static Randomizer = "Randomizer";
+    static ApiService = "ApiService";
 }

@@ -38,13 +38,13 @@ let GenerateCharacter = function () {
 let SetCharacter = function (c: FateCoreCharacter) {
   character.value = c;
 
-  let level = Math.max(...character.value.Skills.map((o) => o.Level));
+  let level = Math.max(...character.value.skills.map((o) => o.Level));
   let arr: { level: number; skills: string[] }[] = [];
 
   while (level >= 1) {
     arr.push({
       level: level,
-      skills: character.value.Skills.filter((x) => x.Level == level).map((x) => x.Name),
+      skills: character.value.skills.filter((x) => x.Level == level).map((x) => x.Name),
     });
     level--;
   }
@@ -57,11 +57,10 @@ let SaveCharacter = function () {
   characters.value.push(character.value);
 };
 
-let LoadCharacters = function () {
+let LoadCharacters = async function () {
   if (fateCoreCharacterRepository) {
-    fateCoreCharacterRepository.GetAsync().then((x) => {
-      characters.value = x;
-    });
+    var response = await fateCoreCharacterRepository.GetAsync();
+    characters.value = response || [];
   }
 };
 
@@ -110,8 +109,8 @@ const RollSkill = function (level: number): void {
   <!-- BEGIN: Page Layout -->
   <div class="p-5 mt-5 intro-y box">
     <form>
-      <div>Name: {{ character?.Name }}</div>
-      <div>Pronouns: {{ character?.Pronouns }}</div>
+      <div>Name: {{ character?.name }}</div>
+      <div>Pronouns: {{ character?.pronouns }}</div>
       <div v-for="skillLevel in SkillList">
         +{{ skillLevel.level }}
         <button
@@ -147,7 +146,7 @@ const RollSkill = function (level: number): void {
       <button @click="Delete(c)">
         <Lucide icon="Trash" />
       </button>
-      <button @click="Load(c)">{{ c.Name }}</button>
+      <button @click="Load(c)">{{ c.name }}</button>
     </div>
   </div>
   <!-- END: Page Layout -->

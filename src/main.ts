@@ -9,6 +9,9 @@ createApp(App).use(router).use(createPinia()).use(
     createAuth0({
       domain: "storysuite-auth.us.auth0.com",
       client_id: "jTEB1v1oxIEe46mo3uabBJlV4uB0hBsV",
-      redirect_uri: window.location.origin
+      redirect_uri: window.location.origin,
+      audience: "https://api.rollbard.com",
+      useRefreshTokens: true,
+      cacheLocation: "localstorage"
     })
   ).mount('#app')

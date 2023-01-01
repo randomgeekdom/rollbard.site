@@ -1,9 +1,9 @@
 import FateCoreSkill from "./FateCoreSkill";
 
 export default class FateCoreCharacter{
-    Name = "";
-    Pronouns = "";
-    Skills: FateCoreSkill[] = [];
-    Aspects: string[] = [];
-    Stunts: string[] = [];
+    name = "";
+    pronouns = "";
+    skills: FateCoreSkill[] = [];
+    aspects: string[] = [];
+    stunts: string[] = [];
 }
