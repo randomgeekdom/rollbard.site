@@ -38,13 +38,13 @@ let GenerateCharacter = function () {
 let SetCharacter = function (c: FateCoreCharacter) {
   character.value = c;
 
-  let level = Math.max(...character.value.skills.map((o) => o.Level));
+  let level = Math.max(...character.value.skills.map((o) => o.level));
   let arr: { level: number; skills: string[] }[] = [];
 
   while (level >= 1) {
     arr.push({
       level: level,
-      skills: character.value.skills.filter((x) => x.Level == level).map((x) => x.Name),
+      skills: character.value.skills.filter((x) => x.level == level).map((x) => x.name),
     });
     level--;
   }
@@ -60,6 +60,7 @@ let SaveCharacter = function () {
 let LoadCharacters = async function () {
   if (fateCoreCharacterRepository) {
     var response = await fateCoreCharacterRepository.GetAsync();
+    debugger;
     characters.value = response || [];
   }
 };

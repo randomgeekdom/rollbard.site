@@ -18,7 +18,7 @@ export default class FateCoreCharacterGenerationService implements IFateCoreChar
         for(let i = 0; i < this.GetNumberOfSkills(); i++){
             var skill = this.randomizer.GetRandomElement(skills);
             var characterSkill = new FateCoreSkill();
-            characterSkill.Name = skill;
+            characterSkill.name = skill;
 
             for(let j = 1; j < 8; j++){
                 var skillsAtLevel = this.GetSkillsAtLevel(character.skills, j);
@@ -26,11 +26,11 @@ export default class FateCoreCharacterGenerationService implements IFateCoreChar
 
                 if(skillsAtLevel <= skillsAtLevelPlus1)
                 {
-                    characterSkill.Level = j;
+                    characterSkill.level = j;
                     break;
                 }
                 else if(skillsAtLevel != skillsAtLevelPlus1 + 1){
-                    characterSkill.Level = j+1
+                    characterSkill.level = j+1
                     break;
                 }
             }
@@ -44,7 +44,7 @@ export default class FateCoreCharacterGenerationService implements IFateCoreChar
     }
 
     private GetSkillsAtLevel(skills: FateCoreSkill[], level: number): number{
-        return skills.filter(x=>x.Level == level).length;
+        return skills.filter(x=>x.level == level).length;
     }
 
     private GetPronoun(gender: Gender): string {

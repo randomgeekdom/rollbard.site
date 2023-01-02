@@ -1,4 +1,4 @@
 export default class FateCoreSkill{
-    Name = "";
-    Level = 0;
+    name = "";
+    level = 0;
 }
