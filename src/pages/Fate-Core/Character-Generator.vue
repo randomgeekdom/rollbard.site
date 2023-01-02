@@ -53,8 +53,8 @@ let SetCharacter = function (c: FateCoreCharacter) {
 };
 
 let SaveCharacter = function () {
-  fateCoreCharacterRepository?.SaveAsync(character.value);
   characters.value.push(character.value);
+  fateCoreCharacterRepository?.SaveAllAsync(characters.value);
 };
 
 let LoadCharacters = async function () {

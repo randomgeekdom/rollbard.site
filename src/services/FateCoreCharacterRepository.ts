@@ -19,25 +19,18 @@ export default class FateCoreCharacterRepository implements IFateCoreCharacterRe
     CHARACTERS: string = "FATE_CORE_CHARACTERS";
     async GetAsync(): Promise<FateCoreCharacter[] | undefined> {
         if(!this.auth0.isAuthenticated?.value){
-            debugger;
             return await this.localRepository.GetAsync();
         }
-
-        debugger;
-
         var response = await this.apiService.GetAsync("api/fate-core/characters");
         return await response.json();
-    }
-
-    async SaveAsync(character: FateCoreCharacter): Promise<void> {
-        if(!this.auth0.isAuthenticated?.value){
-            return await this.localRepository.SaveAsync(character);
-        }
     }
 
     async SaveAllAsync(characters: FateCoreCharacter[]): Promise<void> {
         if(!this.auth0.isAuthenticated?.value){
             return await this.localRepository.SaveAllAsync(characters);
         }
+
+        var response = await this.apiService.PostAsync("api/fate-core/characters", characters);
+        return await response.json();
     }
 }
