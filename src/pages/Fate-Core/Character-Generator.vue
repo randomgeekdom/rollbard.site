@@ -18,7 +18,7 @@ var fateCoreCharacterRepository = ServiceLocator.GetService<IFateCoreCharacterRe
   Constants.FateCoreCharacterRepository
 );
 
-var randomizer = ServiceLocator.GetService<Randomizer>(Constants.Randomizer);
+let randomizer = ServiceLocator.GetService<Randomizer>(Constants.Randomizer);
 
 let ShowDice = ref(false);
 const dice = ref([0, 0, 0, 0]);
@@ -52,15 +52,14 @@ let SetCharacter = function (c: FateCoreCharacter) {
   SkillList.value = arr;
 };
 
-let SaveCharacter = function () {
+let SaveCharacter = async function () {
   characters.value.push(character.value);
-  fateCoreCharacterRepository?.SaveAllAsync(characters.value);
+  await fateCoreCharacterRepository?.SaveAllAsync(characters.value);
 };
 
 let LoadCharacters = async function () {
   if (fateCoreCharacterRepository) {
     var response = await fateCoreCharacterRepository.GetAsync();
-    debugger;
     characters.value = response || [];
   }
 };
@@ -80,7 +79,7 @@ let Delete = function (c: FateCoreCharacter) {
 const TotalDiceValue = ref("");
 
 GenerateCharacter();
-LoadCharacters();
+await LoadCharacters();
 
 const RollSkill = function (level: number): void {
   if (randomizer == null) {
@@ -103,6 +102,7 @@ const RollSkill = function (level: number): void {
 </script>
 
 <template>
+  <!-- component with nested async dependencies -->
   <div class="flex items-center mt-8 intro-y">
     <div class="mx-1"><button @click="GenerateCharacter()">Generate</button></div>
     <div class="mx-1"><button @click="SaveCharacter()">Save Character</button></div>
@@ -150,5 +150,4 @@ const RollSkill = function (level: number): void {
       <button @click="Load(c)">{{ c.name }}</button>
     </div>
   </div>
-  <!-- END: Page Layout -->
 </template>

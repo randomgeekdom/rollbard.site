@@ -28,5 +28,10 @@ provide<IFateCoreCharacterRepository>(
 );
 </script>
 <template>
-  <RouterView />
+  <Suspense>
+    <RouterView />
+    <template #fallback>
+      <img src="./assets/images/loading.gif" />
+    </template>
+  </Suspense>
 </template>
